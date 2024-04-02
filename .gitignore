@@ -1,0 +1,7 @@
+# User
+*.log
+simulações_finais/
+
+# others
+__pycache__/
+
