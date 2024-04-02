@@ -1,0 +1,12 @@
+{
+    "dimension":{
+        "0D": ["point"],
+        "1D": ["line", "arrow", "double_arrow"],
+        "2D": ["circle", "square", "losangle", "elipse", "triangle", "rectangle"]
+    },
+    "dimension_properties":{
+        "0D": ["position"],
+        "1D": ["start", "end"],
+        "2D": ["center", "dx", "dy"]
+    }
+}
