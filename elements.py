@@ -1,5 +1,7 @@
 import json, sys
+import matplotlib as mpl
 import matplotlib.pyplot as plt
+import utils
 
 class Element():
     # this is a polymorphic class intended to represent 
@@ -43,17 +45,17 @@ class Element():
     def plot_on(self, fig, ax):
         match self.dimension:
             case "0D":
-                return plt.scatter(x=self.position[0], y=self.position[1], color="k")
+                ret = plt.scatter(x=self.position[0], y=self.position[1], color="k")
             case "1D":
                 match self.type:
                     case "line":
-                        return plt.plot(
+                        ret = plt.plot(
                             [self.start[0], self.end[0]],
                             [self.start[1], self.end[1]],
                             color="k",
                             )
                     case "arrow":
-                        return plt.arrow(
+                        ret = plt.arrow(
                             x=self.start[0],
                             y=self.start[1], 
                             dx=(self.end[0] - self.start[0]),
@@ -63,5 +65,14 @@ class Element():
                             head_width=0.03,
                             capstyle="round"
                             )
-            #     return plt.
+            #     ret = plt.
             # case "2D":
+        
+        if type(ret) == type(list()):
+            utils.unpack_nested_lists(ret)
+
+        if hasattr(ret, 'get_path'):
+            mpl.collections.PathCollection(ret.get_path())
+            
+
+        return ret
